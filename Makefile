@@ -3,7 +3,7 @@ all: build test
 build: initramfs.img
 
 test: initramfs.img
-	qemu-system-x86_64 -kernel ../vmlinuz -initrd initramfs.img -enable-kvm -hda ../drive.img
+	qemu-system-x86_64 -kernel extra/vmlinuz -initrd initramfs.img -enable-kvm -hda extra/drive.img
 	# -nographic -append "console=ttyS0"
 
 initramfs.img: init

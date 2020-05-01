@@ -2,3 +2,4 @@
 init
 initramfs/
 initramfs.img
+drive.img
