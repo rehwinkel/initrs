@@ -7,6 +7,7 @@ test: initramfs.img
 	# -nographic -append "console=ttyS0"
 
 initramfs.img: init
+	! ls initramfs && mkdir initramfs
 	cp init initramfs/
 	cd initramfs; find . -print0 | cpio -ov0 --format=newc | gzip --best > ../initramfs.img
 
