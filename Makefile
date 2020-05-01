@@ -1,4 +1,7 @@
-all: build test
+all: build drive test 
+
+drive: extra/vmlinuz
+	if [ ! -f extra/drive.img ]; then qemu-img create -f qcow2 extra/drive.img 64M; fi
 
 build: initramfs.img
 
@@ -7,7 +10,7 @@ test: initramfs.img
 	# -nographic -append "console=ttyS0"
 
 initramfs.img: init
-	! ls initramfs && mkdir initramfs
+	if [ ! -d "initramfs/" ]; then mkdir initramfs; fi
 	cp init initramfs/
 	cd initramfs; find . -print0 | cpio -ov0 --format=newc | gzip --best > ../initramfs.img
 
